@@ -1,5 +1,6 @@
 src/pdf/resume.pdfimport React from 'react';
 import { useEffect , useRef } from 'react';
+import pdf from '../pdf/resume.pdf';
 import Typed from 'typed.js';
 import hero from "./data/hero.json";
 
