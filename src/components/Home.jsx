@@ -33,7 +33,7 @@ const Home = () => {
           data-aos-duration="1000" >
         <h1 ref={typedRef}>amrita kastwar</h1>
 
-        <a href="resume.pdf" className='btn btn-outline-warning'>Download Resume</a>
+        <a href={pdf} download="resume.pdf" className='btn btn-outline-warning'>Download Resume</a>
       </div>
       <div className='right'>
         <div className='img' data-aos="fade-up-left"
