@@ -5,7 +5,7 @@
       "title": "Portfolio",
       "imageSrc": "/assets/projects/portfolio.png",
       "description": "This is a project made with complete React js.",
-      "demo": "",
+      "demo": "https://vercel.com/amrita-kastwars-projects/portfolio",
       "source": "https://github.com/Amritakastwar/Portfolio"
     }
     
