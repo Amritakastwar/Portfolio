@@ -1,32 +1,36 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Test (Optional)') {
+            steps {
+                echo 'No tests defined yet'  // Previously empty, now valid
+            }
+        }
+
+        stage('Deploy or Preview') {
+            steps {
+                echo 'Deploy step placeholder'
+            }
+        }
     }
-    stage('Install Dependencies') {
-      steps {
-        sh 'npm install'
-      }
-    }
-    stage('Build') {
-      steps {
-        sh 'npm run build'
-      }
-    }
-    stage('Test (Optional)') {
-      steps {
-        // Replace with your testing command, if applicable
-        // sh 'npm test'
-      }
-    }
-    stage('Deploy or Preview') {
-      steps {
-        echo 'Add deploy or preview steps here'
-      }
-    }
-  }
 }
+
