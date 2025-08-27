@@ -1,36 +1,41 @@
 pipeline {
-    agent any
+    agent any   
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
+                git branch: 'main', url: 'https://github.com/Amritakastwar/Portfolio.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm install'
             }
         }
 
-        stage('Test (Optional)') {
+        stage('Test') {
             steps {
-                echo 'No tests defined yet'  // Previously empty, now valid
+                sh 'npm test'
             }
         }
 
-        stage('Deploy or Preview') {
+        stage('Deploy') {
             steps {
-                echo 'Deploy step placeholder'
+                sh 'echo "Deploying to server..."'
+
             }
         }
     }
+
+    post {
+        success {
+            echo '✅ Pipeline completed successfully!'
+        }
+        failure {
+            echo '❌ Pipeline failed!'
+        }
+    }
 }
+
 
