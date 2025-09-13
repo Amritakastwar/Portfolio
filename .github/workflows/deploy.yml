@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy code
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "bash -l -c '
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             set -x
             mkdir -p ~/app
             cd ~/app
@@ -31,4 +31,4 @@ jobs:
             fi
             docker-compose down || true
             docker-compose up -d --build
-          "
+          EOF
