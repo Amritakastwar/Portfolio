@@ -1,0 +1,28 @@
+name: Portfolio Deployment to VPS
+
+on:
+  push:
+    branches: [ "main" ]  # Trigger when code is pushed to main
+  workflow_dispatch:      # Allows manual run from GitHub
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy code
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
+            cd ~/app || mkdir ~/app && cd ~/app
+            git pull || git clone https://github.com/Amritakastwar/Portfolio.git
+            docker-compose down || true
+            docker-compose up -d --build
+          "
