@@ -20,9 +20,10 @@ jobs:
 
       - name: Deploy code
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
-            cd ~/app || mkdir ~/app && cd ~/app
-            git pull || git clone https://github.com/Amritakastwar/Portfolio.git
-            docker-compose down || true
-            docker-compose up -d --build
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}
+          set -x
+          cd ~/app || mkdir ~/app && cd ~/app
+          git pull || git clone https://github.com/Amritakastwar/Portfolio.git .
+         docker-compose down || true
+         docker-compose up -d --build
           "
